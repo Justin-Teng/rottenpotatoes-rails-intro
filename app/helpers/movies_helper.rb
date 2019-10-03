@@ -4,6 +4,10 @@ module MoviesHelper
     count.odd? ?  "odd" :  "even"
   end
   
+  def set_order(column)
+    {:order_by => column}
+  end
+  
   def set_background(column)
     if @order_by == column
       'hilite'

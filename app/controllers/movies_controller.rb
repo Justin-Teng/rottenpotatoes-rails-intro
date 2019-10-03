@@ -11,14 +11,14 @@ class MoviesController < ApplicationController
   end
 
   def index
+    # Set order_by variable
     if params.has_key? 'order_by'
       @order_by = params[:order_by]
-      #@movies = Movie.order("#{params[:order_by]} asc")
     else
       @order_by = session[:order_by]
-      #@movies = Movie.all()
     end
     
+    # Sort movie by order_by variable
     if @order_by.nil?
       @movies = Movie.all()
     else
