@@ -11,9 +11,6 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all()
-    return
-    
     # G, PG, PG-13, R
     @all_ratings = Movie.all_ratings
     
