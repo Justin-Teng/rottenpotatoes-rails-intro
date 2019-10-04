@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   def index
     if params.has_key? 'order_by'
       @order_by = params[:order_by]
-    
+    end
     if @order_by
       # Sort list by column specified
       @movies = Movie.order("#{@order_by} asc")
