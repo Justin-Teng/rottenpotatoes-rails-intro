@@ -15,4 +15,12 @@ module MoviesHelper
       ''
     end
   end
+  
+  def checked?(rating)
+    if @ratings
+  	  @ratings.include? rating
+  	else
+  	  true
+    end
+  end
 end
