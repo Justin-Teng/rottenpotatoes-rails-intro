@@ -11,7 +11,13 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all()
+    if @order_by
+      # Sort list by column specified
+      @movies = Movie.order("#{@order_by} asc")
+    else
+      # Just show the list
+      @movies = Movie.all()
+    end
     return
     
     # G, PG, PG-13, R
