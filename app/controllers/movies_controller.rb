@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
 
   def index
     # G, PG, PG-13, R
-    @all_ratings = Movie.all_ratings
+    @all_ratings = Movie.get_ratings()
     
     # Get ratings hash from user selected ratings if specified, else load from session hash
     if params.has_key? 'ratings'
