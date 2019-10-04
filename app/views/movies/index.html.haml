@@ -8,7 +8,7 @@
     = check_box_tag "ratings[#{rating}]", 1, checked=is_checked? (rating), id: 'ratings_#{rating}'
   = submit_tag 'Refresh', id: 'ratings_submit'
 
-%table#movies.table.table-striped.col-md-12
+%table/*#movies.table.table-striped.col-md-12*/
   %thead
     %tr
       %th#title_header{class: set_background('title')}= link_to 'Movie Title', movies_path(set_order('title'))
