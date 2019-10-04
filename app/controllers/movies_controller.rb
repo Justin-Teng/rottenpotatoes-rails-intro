@@ -11,18 +11,42 @@ class MoviesController < ApplicationController
   end
 
   def index
-    # Set order_by variable
+    # G, PG, PG-13, R
+    #@all_ratings = Movie::ratings
+    
+    # Get ratings hash from user selected ratings if specified, else load from session hash
+    if params.has_key? 'ratings'
+      @ratings = params[:ratings]
+    else
+      @ratings = session[:ratings]
+    end
+
+    # Get order_by hash from user selected order_by if specified, else load from session hash
     if params.has_key? 'order_by'
       @order_by = params[:order_by]
     else
       @order_by = session[:order_by]
     end
     
-    # Sort movie by order_by variable
-    if @order_by.nil?
-      @movies = Movie.all()
-    else
+    # Save settings to session hash
+    session[:ratings]  = @ratings if @ratings
+    session[:order_by] = @order_by if @order_by
+    
+    if @ratings
+      # Show only movies with ratings specified
+      if @order_by
+        # Sort list by column specified
+        @movies = Movie.where(rating: @ratings.keys).order('#{@order_by} ASC')
+      else
+        # Don't sort list
+        @movies = Movie.where(rating: @ratings.keys)
+      end
+    elsif @order_by
+      # Sort list by column specified
       @movies = Movie.order("#{@order_by} asc")
+    else
+      # Just show the list
+      @movies = Movie.all()
     end
   end
 
