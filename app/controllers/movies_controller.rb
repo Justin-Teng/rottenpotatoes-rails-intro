@@ -42,11 +42,11 @@ class MoviesController < ApplicationController
     
     #flash.keep
     #redirect_to movies_path({ratings: @ratings, order_by: @order_by})
-    return
+    
     # Save settings to session hash
     session[:ratings]  = @ratings if @ratings
     session[:order_by] = @order_by if @order_by
-    
+    return
     if @ratings
       # Show only movies with ratings specified
       if @order_by
