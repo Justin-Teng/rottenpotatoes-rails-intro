@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
 
   def index
     # G, PG, PG-13, R
-    #@all_ratings = Movie::ratings
+    @all_ratings = Movie.all_ratings
     
     # Get ratings hash from user selected ratings if specified, else load from session hash
     if params.has_key? 'ratings'
@@ -27,6 +27,9 @@ class MoviesController < ApplicationController
     else
       @order_by = session[:order_by]
     end
+    
+    flash.keep
+    redirect_to movies_path({ratings: @ratings, order_by: @order_by})
     
     # Save settings to session hash
     session[:ratings]  = @ratings if @ratings
