@@ -51,7 +51,7 @@ class MoviesController < ApplicationController
       # Show only movies with ratings specified
       if @order_by
         # Sort list by column specified
-        @movies = Movie.where(rating: @ratings.keys).order('#{@order_by} ASC')
+        @movies = Movie.where(rating: @ratings.keys).order("#{@order_by} asc")
       else
         # Don't sort list
         @movies = Movie.where(rating: @ratings.keys)
