@@ -21,18 +21,18 @@ class MoviesController < ApplicationController
       # Just show the list
       @movies = Movie.all()
     end
-    return
+    #return
     
     # G, PG, PG-13, R
     @all_ratings = Movie.get_ratings
-    
+    return
     # Get ratings hash from user selected ratings if specified, else load from session hash
     if params.has_key? 'ratings'
       @ratings = params[:ratings]
     else
       @ratings = session[:ratings]
     end
-
+    
     # Get order_by hash from user selected order_by if specified, else load from session hash
     if params.has_key? 'order_by'
       @order_by = params[:order_by]
